@@ -18,10 +18,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 const corsOptions = {
-  origin: "https://jobportal-psi-six.vercel.app",
+  origin: "*",  // Allow all origins
   credentials: true,
 };
 app.use(cors(corsOptions));
+
 
 // Add a root route to serve the HTML content
 app.get("/", (req, res) => 
