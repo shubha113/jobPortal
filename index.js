@@ -14,11 +14,12 @@ const app = express({});
 
 // CORS setup
 const corsOptions = {
-  origin: process.env.FRONTEND_URL,
-  credentials: true, // Access-Control-Allow-Credentials
+  origin: [process.env.FRONTEND_URL, 'https://jobportal-psi-six.vercel.app'],
+  credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept', 'Authorization'],
 };
+
 
 app.use(cors(corsOptions));
 
