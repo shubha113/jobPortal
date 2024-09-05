@@ -12,7 +12,6 @@ import ErrorMiddleware from "./Middlewares/error.js";
 dotenv.config();
 const app = express({});
 
-// CORS setup
 const corsOptions = {
   origin: [process.env.FRONTEND_URL, 'https://jobportal-psi-six.vercel.app'],
   credentials: true,
