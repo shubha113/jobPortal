@@ -15,7 +15,7 @@ const app = express();
 // Add CORS middleware before other middlewares and routes
 app.use(cors({
   origin: "http://localhost:5173",  // Allow your frontend's local URL
-  credentials: false,                // Allow cookies
+  credentials: true,                // Allow cookies
   methods: ["GET", "POST", "PUT", "DELETE"], // Allow these methods
   allowedHeaders: ["Content-Type", "Authorization"], // Allow specific headers
 }));
