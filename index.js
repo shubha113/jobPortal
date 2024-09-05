@@ -42,11 +42,11 @@ app.use("/api/v1/company", companyRoute);
 app.use("/api/v1/job", jobRoute);
 app.use("/api/v1/application", applicationRoute);
 
-// Error middleware
-app.use(ErrorMiddleware);
-
+ connectDb();
 // Connect to DB and start server
 app.listen(PORT, () => {
-  connectDb();
   console.log(`Server is running at port: ${PORT}`);
 });
+
+// Error middleware
+app.use(ErrorMiddleware);
