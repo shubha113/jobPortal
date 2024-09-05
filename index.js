@@ -10,7 +10,7 @@ import applicationRoute from "./routes/applicationRoute.js";
 import ErrorMiddleware from "./Middlewares/error.js";
 
 dotenv.config();
-const app = express();
+const app = express({});
 
 // CORS setup
 const corsOptions = {
