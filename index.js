@@ -12,12 +12,12 @@ import ErrorMiddleware from "./Middlewares/error.js";
 dotenv.config();
 const app = express();
 
-// Add CORS middleware before other middlewares and routes
+// Enable CORS with credentials allowed
 app.use(cors({
-  origin: "http://localhost:5173",  // Allow your frontend's local URL
-  credentials: true,                // Allow cookies
-  methods: ["GET", "POST", "PUT", "DELETE"], // Allow these methods
-  allowedHeaders: ["Content-Type", "Authorization"], // Allow specific headers
+  origin: "http://localhost:5173",   // Your frontend URL
+  credentials: true,                 // Allow credentials (cookies)
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"],  // Allow necessary headers
 }));
 
 // Middlewares
