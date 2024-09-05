@@ -9,18 +9,23 @@ import jobRoute from "./routes/jobRoute.js";
 import applicationRoute from "./routes/applicationRoute.js";
 import ErrorMiddleware from "./Middlewares/error.js";
 
-dotenv.config({});
+dotenv.config();
 const app = express();
 
-//middlewares
+// Add CORS middleware before other middlewares and routes
+app.use(cors({
+  origin: "http://localhost:5173",  // Allow your frontend's local URL
+  credentials: true,                // Allow cookies
+  methods: ["GET", "POST", "PUT", "DELETE"], // Allow these methods
+  allowedHeaders: ["Content-Type", "Authorization"], // Allow specific headers
+}));
+
+// Middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-app.use(cors({origin: `http://localhost:5173`, credentials: true, methods:["GET", "POST","PUT","DELETE"],}));
-
-
-// Add a root route to serve the HTML content
+// Root route
 app.get("/", (req, res) => 
   res.send(
     `<h1>Site is Working. Click <a href="${process.env.FRONTEND_URL}">here</a> to visit frontend.</h1>`
@@ -29,15 +34,17 @@ app.get("/", (req, res) =>
 
 const PORT = process.env.PORT || 8000;
 
-//api routes
+// API routes
 app.use("/api/v1/user", userRoute);
 app.use("/api/v1/company", companyRoute);
 app.use("/api/v1/job", jobRoute);
 app.use("/api/v1/application", applicationRoute);
 
+// Error middleware
+app.use(ErrorMiddleware);
+
+// Connect to DB and start server
 app.listen(PORT, () => {
   connectDb();
   console.log(`Server is running at port: ${PORT}`);
 });
-
-app.use(ErrorMiddleware);
