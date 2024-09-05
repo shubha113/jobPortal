@@ -12,13 +12,15 @@ import ErrorMiddleware from "./Middlewares/error.js";
 dotenv.config();
 const app = express();
 
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', process.env.FRONTEND_URL);
-  res.header('Access-Control-Allow-Credentials', 'true');
-  res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
-  next();
-});
+// CORS setup
+const corsOptions = {
+  origin: process.env.FRONTEND_URL,
+  credentials: true, // Access-Control-Allow-Credentials
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept', 'Authorization'],
+};
+
+app.use(cors(corsOptions));
 
 // Middlewares
 app.use(express.json());
@@ -26,7 +28,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // Root route
-app.get("/", (req, res) => 
+app.get("/", (req, res) =>
   res.send(
     `<h1>Site is Working. Click <a href="${process.env.FRONTEND_URL}">here</a> to visit frontend.</h1>`
   )
