@@ -9,7 +9,7 @@ import jobRoute from "./routes/jobRoute.js";
 import applicationRoute from "./routes/applicationRoute.js";
 import ErrorMiddleware from "./Middlewares/error.js";
 
-dotenv.config();
+dotenv.config(); 
 const app = express({});
 
 const corsOptions = {
