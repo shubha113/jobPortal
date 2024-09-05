@@ -12,12 +12,11 @@ import ErrorMiddleware from "./Middlewares/error.js";
 dotenv.config();
 const app = express();
 
-// Enable CORS with credentials allowed
 app.use(cors({
-  origin: "http://localhost:5173",   // Your frontend URL
-  credentials: true,                 // Allow credentials (cookies)
+  origin: "https://jobportal-psi-six.vercel.app",   
+  credentials: true,                 
   methods: ["GET", "POST", "PUT", "DELETE"],
-  allowedHeaders: ["Content-Type", "Authorization"],  // Allow necessary headers
+  allowedHeaders: ["Content-Type", "Authorization"], 
 }));
 
 // Middlewares
